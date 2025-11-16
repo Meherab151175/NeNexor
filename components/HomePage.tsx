@@ -1,7 +1,9 @@
+
 import React from 'react';
 import HeroSection from './homepage/HeroSection';
 import AboutSection from './homepage/AboutSection';
 import ServicesSection from './homepage/ServicesSection';
+import OurProcessesSection from './homepage/OurProcessesSection';
 import MissionVisionSection from './homepage/MissionVisionSection';
 import GoalsSection from './homepage/GoalsSection';
 import ProjectsSection from './homepage/ProjectsSection';
@@ -14,6 +16,7 @@ const HomePage: React.FC = () => {
       <HeroSection />
       <AboutSection />
       <ServicesSection />
+      <OurProcessesSection />
       <MissionVisionSection />
       <GoalsSection />
       <ProjectsSection />

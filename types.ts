@@ -26,3 +26,9 @@ export interface TeamMember {
   role: string;
   imageUrl: string;
 }
+
+export interface ProcessStep {
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
