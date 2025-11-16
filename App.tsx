@@ -1,15 +1,8 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import Header from './components/homepage/Header';
-import HeroSection from './components/homepage/HeroSection';
-import AboutSection from './components/homepage/AboutSection';
-import ServicesSection from './components/homepage/ServicesSection';
-import MissionVisionSection from './components/homepage/MissionVisionSection';
-import GoalsSection from './components/homepage/GoalsSection';
-import ProjectsSection from './components/homepage/ProjectsSection';
-import TeamSection from './components/homepage/TeamSection';
-import CTASection from './components/homepage/CTASection';
 import Footer from './components/homepage/Footer';
+import HomePage from './components/HomePage';
+import OurProcessesPage from './components/OurProcessesPage';
 
 type Theme = 'dark' | 'light';
 
@@ -30,6 +23,7 @@ export const useTheme = () => {
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState<Theme>('light');
+  const [route, setRoute] = useState(window.location.hash);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -40,24 +34,28 @@ const App: React.FC = () => {
     }
   }, [theme]);
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      setRoute(window.location.hash);
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
+
+  const PageComponent = route === '#our-processes' ? OurProcessesPage : HomePage;
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="bg-background text-foreground font-sans antialiased">
         <Header />
-        <main>
-          <HeroSection />
-          <AboutSection />
-          <ServicesSection />
-          <MissionVisionSection />
-          <GoalsSection />
-          <ProjectsSection />
-          <TeamSection />
-          <CTASection />
-        </main>
+        <PageComponent />
         <Footer />
       </div>
     </ThemeContext.Provider>

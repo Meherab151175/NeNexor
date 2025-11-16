@@ -1,10 +1,10 @@
-
 import { Project, TeamMember } from './types';
 
 export const NAV_LINKS = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'About Us' },
   { href: '#projects', label: 'Projects' },
+  { href: '#our-processes', label: 'Our Processes' },
 ];
 
 export const DUMMY_PROJECTS: Project[] = [
